@@ -1,4 +1,5 @@
-import 'package:currency_converter_advanced/dropdownmenu.dart';
+import 'package:currency_converter_advanced/dropdownmenu_to.dart';
+import './drowdownmenu_from.dart';
 import 'package:flutter/material.dart';
 
 double from = 0, to = 0;
@@ -8,6 +9,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var pixRatio = MediaQuery.of(context).devicePixelRatio;
+    double screenWidth = MediaQuery.of(context).size.width * pixRatio;
+    double center = screenWidth / 2;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -27,39 +32,36 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 90,
+              height: 80,
             ),
-            const Text("Result"),
+            const Text(
+              "Result",
+            ),
             const SizedBox(
-              height: 150,
+              height: 120,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 300),
+            Padding(
+              padding: EdgeInsets.only(left: center / 1.7),
               child: Row(
                 children: [
-                  SizedBox(
-                    width: 50,
-                    child: Text("From"),
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  DropDownMenu(),
-                  SizedBox(
-                    width: 50,
+                  const DropDownMenuFrom(),
+                  const SizedBox(
+                    width: 20,
                   ),
-                  Column(children: [
-                    Icon(Icons.arrow_forward),
-                    Icon(Icons.arrow_back),
-                  ]),
-                  SizedBox(
-                    width: 50,
+                  IconButton(
+                    onPressed: () {
+                      print("exchange button");
+                    },
+                    icon: const Icon(Icons.swap_horiz_sharp),
+                    iconSize: 25,
                   ),
-                  SizedBox(
-                    width: 50,
-                    child: Text("To"),
+                  const SizedBox(
+                    width: 20,
                   ),
-                  DropDownMenu()
+                  const DropDownMenuTo()
                 ],
               ),
             ),
@@ -91,7 +93,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Text("CLick me"),
+              child: const Text("Convert"),
             ),
           ],
         ),

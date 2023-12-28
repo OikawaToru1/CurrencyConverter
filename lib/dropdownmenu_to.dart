@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DropDownMenu extends StatefulWidget {
-  const DropDownMenu({super.key});
+class DropDownMenuTo extends StatefulWidget {
+  const DropDownMenuTo({super.key});
 
   @override
-  State<StatefulWidget> createState() => _DropDownMenuState();
+  State<StatefulWidget> createState() => _DropDownMenuToState();
 }
 
 List<String> list = [
@@ -13,8 +13,9 @@ List<String> list = [
   "Chineese Yuan",
   "Bhutanese Ngultrum"
 ];
+var To;
 
-class _DropDownMenuState extends State {
+class _DropDownMenuToState extends State {
   String? dropdownvalue = list.first;
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,8 @@ class _DropDownMenuState extends State {
           onSelected: (String? value) {
             setState(() {
               dropdownvalue = value;
+              To = dropdownvalue;
+              print("To : ${To}");
             });
           },
           dropdownMenuEntries:
