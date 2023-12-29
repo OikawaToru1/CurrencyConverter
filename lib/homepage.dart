@@ -21,9 +21,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController textEditingController = TextEditingController();
-  convert() {
-    String? currentCurrency = fromgetter();
-    String? convetedCurrency = togetter();
+  convert(String? current, String? next) {
+    String? currentCurrency = current;
+    String? convetedCurrency = next;
 
     currency.forEach((key, value) {
       if (key == currentCurrency) {
@@ -38,6 +38,14 @@ class _HomePageState extends State<HomePage> {
     result = double.parse(textEditingController.text) * rate;
     setState(() {
       result;
+    });
+  }
+
+  void swap() {
+    String? newcurrent = togetter();
+    String? newnext = fromgetter();
+    setState(() {
+      convert(newcurrent, newnext);
     });
   }
 
@@ -74,6 +82,7 @@ class _HomePageState extends State<HomePage> {
               result != 0
                   ? result.toStringAsFixed(2)
                   : result.toStringAsFixed(0),
+              style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 120,
@@ -91,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      print("exchange button");
+                      swap();
                     },
                     icon: const Icon(Icons.swap_horiz_sharp),
                     iconSize: 25,
@@ -116,10 +125,11 @@ class _HomePageState extends State<HomePage> {
                 )),
             TextButton(
               onPressed: () {
-                convert();
+                convert(fromgetter(), togetter());
               },
               style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.black),
+                foregroundColor: MaterialStatePropertyAll(Colors.white70),
                 elevation: MaterialStatePropertyAll(10),
                 minimumSize: MaterialStatePropertyAll(
                   Size(200, 50),
