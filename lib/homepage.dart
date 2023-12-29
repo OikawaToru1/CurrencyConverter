@@ -35,8 +35,10 @@ class _HomePageState extends State<HomePage> {
     });
     double rate = to / from;
 
-    double result = double.parse(textEditingController.text) * rate;
-    print(result);
+    result = double.parse(textEditingController.text) * rate;
+    setState(() {
+      result;
+    });
   }
 
   @override
@@ -69,7 +71,9 @@ class _HomePageState extends State<HomePage> {
               height: 80,
             ),
             Text(
-              "$result",
+              result != 0
+                  ? result.toStringAsFixed(2)
+                  : result.toStringAsFixed(0),
             ),
             const SizedBox(
               height: 120,
