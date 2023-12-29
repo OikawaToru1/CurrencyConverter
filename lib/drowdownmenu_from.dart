@@ -8,13 +8,16 @@ class DropDownMenuFrom extends StatefulWidget {
 }
 
 List<String> list = [
-  "Nepalese Rupee ",
+  "United States Dollar",
+  "Nepalese Rupee",
   "Indian Rupee",
   "Chineese Yuan",
-  "Bhutanese Ngultrum"
+  "Bhutanese Ngultrum",
+  "AED"
 ];
 
-var From;
+// ignore: prefer_typing_uninitialized_variables
+var from;
 
 class _DropDownMenuFromState extends State {
   String? dropdownvalue = list.first;
@@ -29,8 +32,8 @@ class _DropDownMenuFromState extends State {
           onSelected: (String? value) {
             setState(() {
               dropdownvalue = value;
-              From = dropdownvalue;
-              print("From : ${From}");
+              from = dropdownvalue;
+              fromgetter();
             });
           },
           dropdownMenuEntries:
@@ -39,4 +42,8 @@ class _DropDownMenuFromState extends State {
           }).toList()),
     );
   }
+}
+
+String? fromgetter() {
+  return from;
 }

@@ -2,16 +2,50 @@ import 'package:currency_converter_advanced/dropdownmenu_to.dart';
 import './drowdownmenu_from.dart';
 import 'package:flutter/material.dart';
 
-double from = 0, to = 0;
+double from = 0, to = 0, result = 0;
+Map<String, double> currency = {
+  "United States Dollar": 1,
+  "Nepalese Rupee": 133.16,
+  "Indian Rupee": 83.15,
+  "Chineese Yuan": 7.05,
+  "Bhutanese Ngultrum": 83.62,
+  "AED": 3.67
+};
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController textEditingController = TextEditingController();
+  convert() {
+    String? currentCurrency = fromgetter();
+    String? convetedCurrency = togetter();
+
+    currency.forEach((key, value) {
+      if (key == currentCurrency) {
+        from = value;
+      }
+      if (key == convetedCurrency) {
+        to = value;
+      }
+    });
+    double rate = to / from;
+
+    double result = double.parse(textEditingController.text) * rate;
+    print(result);
+  }
 
   @override
   Widget build(BuildContext context) {
     var pixRatio = MediaQuery.of(context).devicePixelRatio;
     double screenWidth = MediaQuery.of(context).size.width * pixRatio;
     double center = screenWidth / 2;
+    togetter();
+    fromgetter();
 
     return Scaffold(
       appBar: AppBar(
@@ -34,8 +68,8 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 80,
             ),
-            const Text(
-              "Result",
+            Text(
+              "$result",
             ),
             const SizedBox(
               height: 120,
@@ -61,15 +95,16 @@ class HomePage extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  const DropDownMenuTo()
+                  const DropDownMenuTo(),
                 ],
               ),
             ),
-            const Padding(
-                padding: EdgeInsetsDirectional.only(
+            Padding(
+                padding: const EdgeInsetsDirectional.only(
                     start: 400, end: 400, bottom: 40, top: 40),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: textEditingController,
+                  decoration: const InputDecoration(
                       hintText: "Enter the amount",
                       hintStyle: TextStyle(
                         color: Colors.white,
@@ -77,7 +112,7 @@ class HomePage extends StatelessWidget {
                 )),
             TextButton(
               onPressed: () {
-                print("Clicked");
+                convert();
               },
               style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.black),
