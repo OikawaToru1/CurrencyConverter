@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     double rate = to / from;
 
     result = double.parse(textEditingController.text) * rate;
+
     setState(() {
       result;
     });
@@ -87,13 +88,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 120,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: center / 1.7),
+            Container(
+              padding: EdgeInsets.only(left: 100, right: 100),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   const DropDownMenuFrom(),
                   const SizedBox(
                     width: 20,
