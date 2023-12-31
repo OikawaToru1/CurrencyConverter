@@ -1,5 +1,4 @@
-import 'package:currency_converter_advanced/dropdownmenu_to.dart';
-import './drowdownmenu_from.dart';
+import 'package:currency_converter_advanced/dropdownmenu.dart';
 import 'package:flutter/material.dart';
 
 double from = 0, to = 0, result = 0;
@@ -43,11 +42,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void swap() {
+    exchange();
     String? newcurrent = togetter();
     String? newnext = fromgetter();
-    setState(() {
-      convert(newcurrent, newnext);
-    });
+
+    convert(newcurrent, newnext);
   }
 
   @override
@@ -89,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               height: 120,
             ),
             Container(
-              padding: EdgeInsets.only(left: 100, right: 100),
+              padding: const EdgeInsets.only(left: 100, right: 100),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
