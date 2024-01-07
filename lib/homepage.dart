@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> {
     exchange();
     String? newcurrent = togetter();
     String? newnext = fromgetter();
-
+    setState(() {
+      DropDownMenuFrom;
+      DropDownMenuTo;
+    });
     convert(newcurrent, newnext);
   }
 
